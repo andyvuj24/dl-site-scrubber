@@ -10,6 +10,7 @@
         html {
             background-color: #090909 !important;
         }
+
         body {
             background-color: #090909 !important;
             color: #dddddd !important;
@@ -91,6 +92,12 @@
             border-radius: 12px;
             padding: 8px;
         }
+
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1440px;
+            }
+        }
     </style>
 
 </head>
@@ -102,8 +109,9 @@
             <h4>Download your file clean and safely.</h4>
         </div>
         <div id="dl_box" class="row justify-content-center">
-            <div style="line-height: 1.6;background-color: red;" class="col-8 text-center mt-5 mb-3">
-                <span class="display-5" id="filename">VPN Proxy by Hexatech Secure VPN and Unlimited VPN Premium v3.2.1 armeabi-v7a.apk</span>
+            <div style="line-height: 1.6;background-color: #111;border-radius: 12px;"
+                class="col-8 text-center mt-5 mb-3">
+                <span class="display-5" id="filename">File name here...</span>
             </div>
             <div class="col-12">
                 <div class="col-8 text-center mt-3 mb-3">
@@ -112,6 +120,10 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div id="timer" class="col-12 text-center">
+                <span id="auto_submit">Time Left till you can submit without error: </span>
+                <span id="time" class="display-5"></span>
             </div>
             <div id="add_here" class="col-12 text-center"></div>
             <div class="col-12 text-center mt-3">
@@ -123,6 +135,35 @@
         $("#dl_button").on("click", function () {
             $("form").submit();
         });
+        function startTimer(duration, display) {
+            var start = Date.now(),
+                diff,
+                minutes,
+                seconds;
+            function timer() {
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+                if (duration >= 0) {
+                    seconds = (diff % 60) | 0;
+                    //seconds = seconds < 10 ? "0" + seconds : seconds;
+                    display.textContent = seconds;
+                    duration--;
+
+                    if (diff <= 0) {
+                        start = Date.now() + 1000;
+                    }
+                } else {
+                    display.textContent = 0;
+                }
+            };
+            timer();
+            setInterval(timer, 1000);
+        }
+
+        window.onload = function () {
+            var secondsLeft = 2,
+                display = document.querySelector('#time');
+            startTimer(secondsLeft, display);
+        };
     </script>
 
 </body>

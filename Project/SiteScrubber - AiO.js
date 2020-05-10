@@ -16,7 +16,7 @@
 // @match        https://up-load.io/download*
 // @match        https://upload.ac/*
 // @match        https://uploadrar.com/*
-// @require      https://code.jquery.com/jquery-1.9.1.min.js
+// @require      https://code.jquery.com/jquery-3.5.1.min.js
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
