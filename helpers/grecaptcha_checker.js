@@ -1,0 +1,1 @@
+var isCaptchaChecked = (grecaptcha && grecaptcha.getResponse().length !== 0);
