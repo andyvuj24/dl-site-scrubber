@@ -132,35 +132,36 @@
         </div>
     </div>
     <script>
+        var isCaptchaChecked = false;
         $("#dl_button").on("click", function () {
             $("form").submit();
         });
         function startTimer(duration, display) {
             var start = Date.now(),
                 diff,
-                minutes,
                 seconds;
             function timer() {
                 diff = duration - (((Date.now() - start) / 1000) | 0);
-                if (duration >= 0) {
-                    seconds = (diff % 60) | 0;
-                    //seconds = seconds < 10 ? "0" + seconds : seconds;
+                seconds = (diff % 60) | 0;
+                if (seconds != 0) {
                     display.textContent = seconds;
-                    duration--;
-
                     if (diff <= 0) {
                         start = Date.now() + 1000;
                     }
                 } else {
                     display.textContent = 0;
+                    clearInterval(timerStart);
+                    if (isCaptchaChecked) {
+                        $("#dl_button").click();
+                    }
                 }
             };
             timer();
-            setInterval(timer, 1000);
+            var timerStart = setInterval(timer, 1000);
         }
 
         window.onload = function () {
-            var secondsLeft = 2,
+            var secondsLeft = 60,
                 display = document.querySelector('#time');
             startTimer(secondsLeft, display);
         };
