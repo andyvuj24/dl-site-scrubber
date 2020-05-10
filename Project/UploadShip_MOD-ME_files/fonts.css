@@ -1,0 +1,5 @@
+@font-face {  
+  font-family: "play";  
+  src: url("Play-Regular.ttf") format("opentype");  
+  unicode-range:"U+0-10FFFF";
+}

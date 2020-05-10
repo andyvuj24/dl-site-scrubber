@@ -1,0 +1,18 @@
+<script>
+
+    // Load custom website
+    //:LOOP
+    // check if we are on final download page
+    // if so - copy download button to the custom website
+    // else copy the form to the custom website
+    // add check for google captcha being completed and auto submit
+    // GOTO loop
+
+
+    $('body').prepend($('WEBSITE###############'))
+    $("div.add_here").add($('form').has(".g-recaptcha"))
+    var ch = $('body').children().length
+    for (var i = 0; i < ch - 1; i++) {
+        $('main').next().remove();
+    }
+</script>
